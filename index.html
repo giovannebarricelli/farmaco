@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Nova Life Imports - Catálogo Oficial</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -17,12 +17,19 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        /* Trava o scroll horizontal em toda a página */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
         body {
             background-color: #f4f6f9;
             color: #333;
         }
 
-        /* --- CABEÇALHO GLASSMORPHISM OTIMIZADO PARA MOBILE --- */
+        /* --- CABEÇALHO GLASSMORPHISM --- */
         header {
             position: fixed;
             top: 0;
@@ -61,24 +68,6 @@
             text-overflow: ellipsis;
         }
 
-        .nav-menu-links {
-            display: flex;
-            gap: 15px;
-            list-style: none;
-        }
-
-        .nav-menu-links a {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #444;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .nav-menu-links a:hover {
-            color: #d4af37;
-        }
-
         .nav-right {
             display: flex;
             align-items: center;
@@ -105,19 +94,11 @@
             font-size: 0.9rem;
         }
 
-        /* Oculta o botão 'Entrar' no mobile para economizar espaço e manter limpo */
-        .btn-entrar {
-            display: none;
-        }
-
         @media (min-width: 768px) {
             .logo-text {
                 font-size: 1.3rem;
                 letter-spacing: 1.5px;
                 padding-left: 8px;
-            }
-            .btn-entrar {
-                display: flex;
             }
             header {
                 padding: 12px 5%;
@@ -322,7 +303,7 @@
             }
         }
 
-        /* --- SIDEBAR DE FILTROS --- */
+        /* --- SIDEBAR DE FILTROS E BUSCA --- */
         .filters-sidebar {
             background: #fff;
             border-radius: 12px;
@@ -340,11 +321,17 @@
             }
         }
 
+        .filters-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
         .filters-title {
             font-size: 1rem;
             font-weight: 700;
             color: #222;
-            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -354,32 +341,53 @@
             color: #d4af37;
         }
 
+        /* Caixa de Busca */
+        .search-box {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 8px 10px 8px 32px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            outline: none;
+            transition: border-color 0.2s;
+            background: #fafafa;
+        }
+
+        .search-box input:focus {
+            border-color: #d4af37;
+            background: #fff;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+            font-size: 0.85rem;
+        }
+
         .category-list {
             list-style: none;
             display: flex;
-            flex-direction: row;
-            gap: 8px;
-            overflow-x: auto;
-            padding-bottom: 5px;
-        }
-
-        @media (min-width: 900px) {
-            .category-list {
-                flex-direction: column;
-                gap: 10px;
-                overflow-x: visible;
-            }
+            flex-direction: column;
+            gap: 6px;
         }
 
         .category-item button {
             background: #f8f9fa;
             border: 1px solid #ddd;
-            text-align: center;
-            font-size: 0.85rem;
+            text-align: left;
+            width: 100%;
+            padding: 8px 12px;
+            font-size: 0.88rem;
             color: #444;
             cursor: pointer;
-            white-space: nowrap;
-            padding: 6px 12px;
             border-radius: 6px;
             transition: all 0.2s;
         }
@@ -388,8 +396,6 @@
             .category-item button {
                 background: none;
                 border: none;
-                text-align: left;
-                width: 100%;
                 padding: 8px 10px;
                 font-size: 0.95rem;
             }
@@ -638,24 +644,21 @@
         <div class="logo-container" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
             <div class="logo-text">NOVA LIFE IMPORTS</div>
         </div>
-        <ul class="nav-menu-links">
-            <li><a href="#catalogo-produtos">Catálogo</a></li>
-        </ul>
         <div class="nav-right">
-            <a href="#entrar" class="nav-btn btn-entrar"><i class="fa-regular fa-user"></i><span>Entrar</span></a>
+            <a href="#entrar" class="nav-btn"><i class="fa-regular fa-user"></i><span>Entrar</span></a>
             <a href="#carrinho" class="nav-btn"><i class="fa-solid fa-cart-shopping"></i><span>Carrinho</span></a>
         </div>
     </header>
 
     <div class="promo-banner">
-        🔥 Promoções da Semana: Descontos especiais em peptídeos e eletrônicos!
+        🔥 Promoções da Semana: Descontos especiais em injetáveis e medicamentos importados!
     </div>
 
     <!-- ================= PÁGINA INICIAL COM DESTAQUES ================= -->
     <div class="hero-section">
         <div class="hero-banner">
             <div class="hero-text">
-                <h1>Excelência e Qualidade em <span>Produtos Importados</span></h1>
+                <h1>Excelência e Qualidade em <span>Injetáveis e Medicamentos</span></h1>
                 <p>Encontre as melhores linhas de Tirzepatida, Peptídeos, Ergogênicos, Botox e Eletrônicos com autenticidade garantida.</p>
                 <a href="#catalogo-produtos" class="hero-btn">Ver Catálogo Abaixo &rarr;</a>
             </div>
@@ -705,11 +708,19 @@
     <!-- ================= CATÁLOGO DE PRODUTOS ================= -->
     <div id="catalogo-produtos" class="main-container">
         
-        <!-- SIDEBAR DE FILTROS -->
+        <!-- SIDEBAR DE FILTROS E BUSCA -->
         <aside class="filters-sidebar">
-            <div class="filters-title">
-                <i class="fa-solid fa-filter"></i> Categorias
+            <div class="filters-header">
+                <div class="filters-title">
+                    <i class="fa-solid fa-filter"></i> Categorias
+                </div>
             </div>
+            <!-- Campo de Busca -->
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Buscar produtos..." onkeyup="filterProducts()">
+            </div>
+
             <ul class="category-list">
                 <li class="category-item"><button id="btn-tirzepatida" class="active" onclick="switchCategory('tirzepatida', this)">Tirzepatida</button></li>
                 <li class="category-item"><button id="btn-agua" onclick="switchCategory('agua', this)">Água</button></li>
@@ -731,16 +742,39 @@
                 <h2>Tirzepatida</h2>
                 <div class="products-grid">
                     <script>
-                        for(let i=1; i<=20; i++) {
+                        const imgsTirz = [
+                            "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1579165466741-7f35e4755660?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1550572017-edd951b55104?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1512290900672-8cd37af64572?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1550831107-1553da8c8464?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1583912267550-d44d59ed4174?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1586015518555-f26c24740e13?auto=format&fit=crop&w=300&q=80"
+                        ];
+                        for(let i=0; i<20; i++) {
+                            let n = i + 1;
                             document.write(`
                             <div class="product-card">
                                 <div class="badge-container"><span class="badge badge-oferta">Oferta</span></div>
-                                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300&q=80" alt="Prod"></div>
+                                <div class="product-img-box"><img src="${imgsTirz[i]}" alt="Tirzepatida"></div>
                                 <div class="product-content">
                                     <span class="product-category-tag">Tirzepatida</span>
-                                    <div class="product-title">Tirzepatida Avançado V${i}</div>
-                                    <div class="product-desc">Lote certificado com alta pureza e eficácia dose ${i}mg.</div>
-                                    <div class="product-price-container"><div class="current-price">R$ ${(300 + i * 25).toFixed(2).replace('.', ',')}</div></div>
+                                    <div class="product-title">Tirzepatida Avançado V${n}</div>
+                                    <div class="product-desc">Lote certificado com alta pureza e eficácia dose ${n}mg.</div>
+                                    <div class="product-price-container"><div class="current-price">R$ ${(300 + n * 25).toFixed(2).replace('.', ',')}</div></div>
                                     <a href="#" class="btn-view">Ver produto &rarr;</a>
                                     <a href="#" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Adicionar</a>
                                 </div>
@@ -755,16 +789,39 @@
                 <h2>Água (Bacteriostática / Destilada)</h2>
                 <div class="products-grid">
                     <script>
-                        for(let i=1; i<=20; i++) {
+                        const imgsAgua = [
+                            "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1579165466741-7f35e4755660?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1550572017-edd951b55104?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1512290900672-8cd37af64572?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1583912267550-d44d59ed4174?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=300&q=80"
+                        ];
+                        for(let i=0; i<20; i++) {
+                            let n = i + 1;
                             document.write(`
                             <div class="product-card">
                                 <div class="badge-container"><span class="badge badge-top">Essencial</span></div>
-                                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=300&q=80" alt="Água"></div>
+                                <div class="product-img-box"><img src="${imgsAgua[i]}" alt="Água"></div>
                                 <div class="product-content">
                                     <span class="product-category-tag">Água</span>
-                                    <div class="product-title">Água Bacteriostática ${i}0ml</div>
+                                    <div class="product-title">Água Bacteriostática ${n}0ml</div>
                                     <div class="product-desc">Frasco estéril com álcool benzílico 0.9%.</div>
-                                    <div class="product-price-container"><div class="current-price">R$ ${(45 + i * 5).toFixed(2).replace('.', ',')}</div></div>
+                                    <div class="product-price-container"><div class="current-price">R$ ${(45 + n * 5).toFixed(2).replace('.', ',')}</div></div>
                                     <a href="#" class="btn-view">Ver produto &rarr;</a>
                                     <a href="#" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Adicionar</a>
                                 </div>
@@ -779,16 +836,39 @@
                 <h2>Retatrutide</h2>
                 <div class="products-grid">
                     <script>
-                        for(let i=1; i<=20; i++) {
+                        const imgsRet = [
+                            "https://images.unsplash.com/photo-1579165466741-7f35e4755660?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1550572017-edd951b55104?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1512290900672-8cd37af64572?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1550831107-1553da8c8464?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1583912267550-d44d59ed4174?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1586015518555-f26c24740e13?auto=format&fit=crop&w=300&q=80"
+                        ];
+                        for(let i=0; i<20; i++) {
+                            let n = i + 1;
                             document.write(`
                             <div class="product-card">
                                 <div class="badge-container"><span class="badge badge-lancamento">Novo</span></div>
-                                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=300&q=80" alt="Retatrutide"></div>
+                                <div class="product-img-box"><img src="${imgsRet[i]}" alt="Retatrutide"></div>
                                 <div class="product-content">
                                     <span class="product-category-tag">Retatrutide</span>
-                                    <div class="product-title">Retatrutide Pharma ${i}mg</div>
+                                    <div class="product-title">Retatrutide Pharma ${n}mg</div>
                                     <div class="product-desc">Peptídeo de última geração puro.</div>
-                                    <div class="product-price-container"><div class="current-price">R$ ${(490 + i * 40).toFixed(2).replace('.', ',')}</div></div>
+                                    <div class="product-price-container"><div class="current-price">R$ ${(490 + n * 40).toFixed(2).replace('.', ',')}</div></div>
                                     <a href="#" class="btn-view">Ver produto &rarr;</a>
                                     <a href="#" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Adicionar</a>
                                 </div>
@@ -803,16 +883,39 @@
                 <h2>Ergogenicos</h2>
                 <div class="products-grid">
                     <script>
-                        for(let i=1; i<=20; i++) {
+                        const imgsErg = [
+                            "https://images.unsplash.com/photo-1550572017-edd951b55104?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1579165466741-7f35e4755660?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1512290900672-8cd37af64572?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1550831107-1553da8c8464?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1583912267550-d44d59ed4174?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1586015518555-f26c24740e13?auto=format&fit=crop&w=300&q=80"
+                        ];
+                        for(let i=0; i<20; i++) {
+                            let n = i + 1;
                             document.write(`
                             <div class="product-card">
                                 <div class="badge-container"><span class="badge badge-oferta">Oferta</span></div>
-                                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=300&q=80" alt="Ergogênico"></div>
+                                <div class="product-img-box"><img src="${imgsErg[i]}" alt="Ergogênico"></div>
                                 <div class="product-content">
                                     <span class="product-category-tag">Ergogenicos</span>
-                                    <div class="product-title">Ergogênico Pro Blend ${i}ml</div>
+                                    <div class="product-title">Ergogênico Pro Blend ${n}ml</div>
                                     <div class="product-desc">Composto de alta performance.</div>
-                                    <div class="product-price-container"><div class="current-price">R$ ${(220 + i * 25).toFixed(2).replace('.', ',')}</div></div>
+                                    <div class="product-price-container"><div class="current-price">R$ ${(220 + n * 25).toFixed(2).replace('.', ',')}</div></div>
                                     <a href="#" class="btn-view">Ver produto &rarr;</a>
                                     <a href="#" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Adicionar</a>
                                 </div>
@@ -827,16 +930,39 @@
                 <h2>Medicamento</h2>
                 <div class="products-grid">
                     <script>
-                        for(let i=1; i<=20; i++) {
+                        const imgsMed = [
+                            "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1579165466741-7f35e4755660?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1550572017-edd951b55104?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1512290900672-8cd37af64572?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1550831107-1553da8c8464?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1583912267550-d44d59ed4174?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1586015518555-f26c24740e13?auto=format&fit=crop&w=300&q=80"
+                        ];
+                        for(let i=0; i<20; i++) {
+                            let n = i + 1;
                             document.write(`
                             <div class="product-card">
                                 <div class="badge-container"><span class="badge badge-top">Top</span></div>
-                                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300&q=80" alt="Medicamento"></div>
+                                <div class="product-img-box"><img src="${imgsMed[i]}" alt="Medicamento"></div>
                                 <div class="product-content">
                                     <span class="product-category-tag">Medicamento</span>
-                                    <div class="product-title">Composto Especializado Lab ${i}</div>
+                                    <div class="product-title">Composto Especializado Lab ${n}</div>
                                     <div class="product-desc">Fórmula importada com controle.</div>
-                                    <div class="product-price-container"><div class="current-price">R$ ${(180 + i * 20).toFixed(2).replace('.', ',')}</div></div>
+                                    <div class="product-price-container"><div class="current-price">R$ ${(180 + n * 20).toFixed(2).replace('.', ',')}</div></div>
                                     <a href="#" class="btn-view">Ver produto &rarr;</a>
                                     <a href="#" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Adicionar</a>
                                 </div>
@@ -851,16 +977,39 @@
                 <h2>Peptídeo</h2>
                 <div class="products-grid">
                     <script>
-                        for(let i=1; i<=20; i++) {
+                        const imgsPep = [
+                            "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1579165466741-7f35e4755660?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1550572017-edd951b55104?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1512290900672-8cd37af64572?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1550831107-1553da8c8464?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1583912267550-d44d59ed4174?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1586015518555-f26c24740e13?auto=format&fit=crop&w=300&q=80"
+                        ];
+                        for(let i=0; i<20; i++) {
+                            let n = i + 1;
                             document.write(`
                             <div class="product-card">
                                 <div class="badge-container"><span class="badge badge-lancamento">Novo</span></div>
-                                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1579165466741-7f35e4755660?auto=format&fit=crop&w=300&q=80" alt="Peptídeo"></div>
+                                <div class="product-img-box"><img src="${imgsPep[i]}" alt="Peptídeo"></div>
                                 <div class="product-content">
                                     <span class="product-category-tag">Peptídeo</span>
-                                    <div class="product-title">Peptídeo Complexo Série ${i}</div>
+                                    <div class="product-title">Peptídeo Complexo Série ${n}</div>
                                     <div class="product-desc">Liofilizado com pureza > 99%.</div>
-                                    <div class="product-price-container"><div class="current-price">R$ ${(310 + i * 30).toFixed(2).replace('.', ',')}</div></div>
+                                    <div class="product-price-container"><div class="current-price">R$ ${(310 + n * 30).toFixed(2).replace('.', ',')}</div></div>
                                     <a href="#" class="btn-view">Ver produto &rarr;</a>
                                     <a href="#" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Adicionar</a>
                                 </div>
@@ -875,16 +1024,39 @@
                 <h2>Botox</h2>
                 <div class="products-grid">
                     <script>
-                        for(let i=1; i<=20; i++) {
+                        const imgsBotox = [
+                            "https://images.unsplash.com/photo-1512290900672-8cd37af64572?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1579165466741-7f35e4755660?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1550572017-edd951b55104?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1550831107-1553da8c8464?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1583912267550-d44d59ed4174?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1586015518555-f26c24740e13?auto=format&fit=crop&w=300&q=80"
+                        ];
+                        for(let i=0; i<20; i++) {
+                            let n = i + 1;
                             document.write(`
                             <div class="product-card">
                                 <div class="badge-container"><span class="badge badge-top">Top</span></div>
-                                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1550572017-edd951b55104?auto=format&fit=crop&w=300&q=80" alt="Botox"></div>
+                                <div class="product-img-box"><img src="${imgsBotox[i]}" alt="Botox"></div>
                                 <div class="product-content">
                                     <span class="product-category-tag">Botox</span>
-                                    <div class="product-title">Toxina Botulínica ${i * 50}U</div>
+                                    <div class="product-title">Toxina Botulínica ${n * 50}U</div>
                                     <div class="product-desc">Frasco selado para estética.</div>
-                                    <div class="product-price-container"><div class="current-price">R$ ${(850 + i * 45).toFixed(2).replace('.', ',')}</div></div>
+                                    <div class="product-price-container"><div class="current-price">R$ ${(850 + n * 45).toFixed(2).replace('.', ',')}</div></div>
                                     <a href="#" class="btn-view">Ver produto &rarr;</a>
                                     <a href="#" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Adicionar</a>
                                 </div>
@@ -899,16 +1071,39 @@
                 <h2>Eletrônica</h2>
                 <div class="products-grid">
                     <script>
-                        for(let i=1; i<=20; i++) {
+                        const imgsElec = [
+                            "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1519558260268-cde7e03a0152?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=300&q=80"
+                        ];
+                        for(let i=0; i<20; i++) {
+                            let n = i + 1;
                             document.write(`
                             <div class="product-card">
                                 <div class="badge-container"><span class="badge badge-oferta">Oferta</span></div>
-                                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=300&q=80" alt="Eletrônica"></div>
+                                <div class="product-img-box"><img src="${imgsElec[i]}" alt="Eletrônica"></div>
                                 <div class="product-content">
                                     <span class="product-category-tag">Eletrônica</span>
-                                    <div class="product-title">Dispositivo Digital Tech ${i}</div>
+                                    <div class="product-title">Dispositivo Digital Tech ${n}</div>
                                     <div class="product-desc">Acessório tecnológico importado.</div>
-                                    <div class="product-price-container"><div class="current-price">R$ ${(120 + i * 18).toFixed(2).replace('.', ',')}</div></div>
+                                    <div class="product-price-container"><div class="current-price">R$ ${(120 + n * 18).toFixed(2).replace('.', ',')}</div></div>
                                     <a href="#" class="btn-view">Ver produto &rarr;</a>
                                     <a href="#" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Adicionar</a>
                                 </div>
@@ -923,16 +1118,39 @@
                 <h2>Preenchedores</h2>
                 <div class="products-grid">
                     <script>
-                        for(let i=1; i<=20; i++) {
+                        const imgsPreen = [
+                            "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1579165466741-7f35e4755660?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1550572017-edd951b55104?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1512290900672-8cd37af64572?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1550831107-1553da8c8464?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1583912267550-d44d59ed4174?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=300&q=80",
+                            "https://images.unsplash.com/photo-1586015518555-f26c24740e13?auto=format&fit=crop&w=300&q=80"
+                        ];
+                        for(let i=0; i<20; i++) {
+                            let n = i + 1;
                             document.write(`
                             <div class="product-card">
                                 <div class="badge-container"><span class="badge badge-top">Top</span></div>
-                                <div class="product-img-box"><img src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=300&q=80" alt="Preenchedor"></div>
+                                <div class="product-img-box"><img src="${imgsPreen[i]}" alt="Preenchedor"></div>
                                 <div class="product-content">
                                     <span class="product-category-tag">Preenchedores</span>
-                                    <div class="product-title">Ácido Hialurônico Filler ${i}ml</div>
+                                    <div class="product-title">Ácido Hialurônico Filler ${n}ml</div>
                                     <div class="product-desc">Gel reticulado de alta elasticidade.</div>
-                                    <div class="product-price-container"><div class="current-price">R$ ${(410 + i * 35).toFixed(2).replace('.', ',')}</div></div>
+                                    <div class="product-price-container"><div class="current-price">R$ ${(410 + n * 35).toFixed(2).replace('.', ',')}</div></div>
                                     <a href="#" class="btn-view">Ver produto &rarr;</a>
                                     <a href="#" class="btn-cart"><i class="fa-solid fa-cart-plus"></i> Adicionar</a>
                                 </div>
@@ -946,7 +1164,7 @@
 
     </div>
 
-    <!-- Script de Navegação por Abas e Rolagem -->
+    <!-- Script de Navegação, Rolagem e Busca -->
     <script>
         function switchCategory(categoryId, buttonElement) {
             document.querySelectorAll('.category-content').forEach(el => el.classList.remove('active'));
@@ -957,8 +1175,29 @@
                 buttonElement.classList.add('active');
             }
 
+            // Limpa a busca ao trocar de categoria
+            document.getElementById('searchInput').value = '';
+            filterProducts();
+
             const catalogElement = document.getElementById('catalogo-produtos');
             catalogElement.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function filterProducts() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let activeCategory = document.querySelector('.category-content.active');
+            let cards = activeCategory.querySelectorAll('.product-card');
+
+            cards.forEach(card => {
+                let title = card.querySelector('.product-title').innerText.toLowerCase();
+                let desc = card.querySelector('.product-desc').innerText.toLowerCase();
+                
+                if (title.includes(input) || desc.includes(input)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
         }
     </script>
 
